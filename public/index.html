@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Translation</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body data-status="Idle">
+  <main id="setup">
+    <div class="setup-card">
+      <p class="language">Deutsch <span>→</span> English</p>
+      <h1>Live Translation</h1>
+      <form id="setup-form">
+        <label for="audio-input">Audio input</label>
+        <select id="audio-input"><option value="">Default microphone</option></select>
+        <button id="audio-refresh" type="button" hidden>Load microphones</button>
+        <button id="start" type="submit">Start <span aria-hidden="true">→</span></button>
+      </form>
+      <section id="desktop-options" hidden aria-label="Overlay settings">
+        <label for="overlay-display">Overlay display</label>
+        <select id="overlay-display"></select>
+        <div class="overlay-dimensions">
+          <div><label for="overlay-size">Text size</label><input id="overlay-size" type="number" min="24" max="96" value="48"></div>
+          <div><label for="overlay-bottom">Bottom margin</label><input id="overlay-bottom" type="number" min="0" max="400" value="24"></div>
+        </div>
+        <div class="desktop-buttons">
+          <button id="overlay-preview" type="button">Test overlay</button>
+          <button id="overlay-toggle" type="button">Hide overlay</button>
+          <button id="desktop-reconnect" type="button">Reconnect</button>
+          <button id="desktop-stop" type="button" disabled>Stop</button>
+        </div>
+        <p class="desktop-help">Two subtitle lines · completed text above, live text below<br>Ctrl+Alt+R reconnect · Ctrl+Alt+U show/hide<br>Ctrl+Alt+C show controls</p>
+      </section>
+      <p class="status" role="status"><span class="dot" aria-hidden="true"></span><span data-status-label>Idle</span></p>
+      <p class="error" data-error></p>
+    </div>
+  </main>
+  <main id="subtitle-screen" hidden>
+    <div id="captions" aria-label="English subtitles">
+      <div id="previous"></div>
+      <div id="current"></div>
+    </div>
+    <footer>
+      <div><p class="status" role="status"><span class="dot" aria-hidden="true"></span><span data-status-label>Idle</span></p><p class="error" data-error></p></div>
+      <div id="controls">
+        <button id="reconnect" type="button" title="Reconnect (R)">Reconnect</button>
+        <button id="fullscreen" type="button" title="Fullscreen (F)">Fullscreen</button>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

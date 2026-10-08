@@ -1,0 +1,48 @@
+Live Translation — Windows overlay
+
+1. Extract the entire ZIP into a folder.
+2. Copy .env.example to .env in the same folder as Live Translation.exe.
+   Add your OPENAI_API_KEY. Never share that file with others.
+3. Run Live Translation.exe. No separate Node.js installation is needed.
+4. Click Load microphones, select the audio input and the projector display.
+   Refresh microphones updates the device list when needed.
+5. Click Test overlay: a sample subtitle appears for 10 seconds without
+   using the microphone or calling OpenAI.
+6. Start your fullscreen PowerPoint presentation and check the sample overlay.
+7. Adjust Text size and Bottom margin as needed, then click Start.
+
+Two fixed subtitle lines are shown: completed text above, live text below.
+At a sentence boundary or full row, a whole text block moves to the upper row.
+The text does not scroll sideways. Captions remain visible during speech pauses.
+The transparent window does not receive focus or intercept mouse clicks.
+Keep the control window open; it can be minimized. Closing it quits the app.
+
+Ctrl+Alt+R: reconnect
+Ctrl+Alt+U: show/hide the overlay (hiding does not stop the microphone)
+Ctrl+Alt+C: bring the controls to the foreground
+Stop: stop microphone and translation, clear captions
+
+Use an extended desktop to keep controls off the projector. With duplicate
+displays both screens show the same output.
+
+This is an unsigned test build. Windows fullscreen window ordering, display
+scaling, presenter controls and microphone permissions must be checked on
+the event computer. The OpenAI translation model also produces translated
+audio; this app only displays its transcript and does not play that audio.
+
+Version 1.0.1 disables GPU acceleration and uses a separate Windows cache
+profile. If no control window appears, check startup.log beside the EXE.
+The log contains startup stages and process errors, never API keys or captions.
+If a previous copy is still running, Ctrl+Alt+C restores its control window.
+Before switching builds, close the old copy; if necessary end only its
+Live Translation processes in Task Manager.
+
+Version 1.0.2 uses Electron 43.7.7 as a compatibility test. Audio devices are
+only queried after opening the audio selector or clicking Start. If the app
+crashes, startup.log records whether it happened before or during audio setup.
+
+Version 1.0.3 adds the two-line overlay, fixes microphone device enumeration,
+and safely ignores late caption messages when windows are closing.
+Known event-name spellings are corrected locally, including Happy Lab to
+Happylab, Laila to Leyla and Andy to Andi. This does not change the model's
+audio recognition; other misrecognized names may still need correction.

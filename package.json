@@ -1,0 +1,49 @@
+{
+  "name": "live-translation",
+  "version": "1.0.3",
+  "description": "Live English subtitles with a two-line Windows presentation overlay",
+  "private": true,
+  "type": "module",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "desktop": "electron .",
+    "build:windows": "electron-builder --win zip --x64",
+    "test": "node --test"
+  },
+  "build": {
+    "appId": "at.happylab.live-translation",
+    "productName": "Live Translation",
+    "files": [
+      "desktop/**/*",
+      "public/**/*",
+      "server.js",
+      "package.json"
+    ],
+    "extraFiles": [
+      {
+        "from": ".env.example",
+        "to": ".env.example"
+      },
+      {
+        "from": "desktop/WINDOWS.txt",
+        "to": "WINDOWS.txt"
+      }
+    ],
+    "win": {
+      "target": "zip",
+      "signAndEditExecutable": false
+    },
+    "artifactName": "Live-Translation-Windows-${version}-${arch}.${ext}"
+  },
+  "engines": {
+    "node": ">=22.6"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "electron": "43.7.7",
+    "electron-builder": "^26.15.3"
+  }
+}
